@@ -1,3 +1,4 @@
+require "modules.errHandler"
 curOS = love.system.getOS()
 
     -- Load Libraries
@@ -119,6 +120,16 @@ if curOS == "Android" then
 	end
 	function love.touchpressed(id, x, y, dx, dy, pressure)
 		if x > love.graphics.getWidth() / 2 then
+			clicks = clicks + 1
+		end
+	end
+end
+
+if love.joystick.getJoystickCount() > 1 then
+	local j = love.joystick.getJoysticks()[1]
+	if j:isGamepad() then
+		if j:isDown(2) then
+			sfxHold:play()
 			clicks = clicks + 1
 		end
 	end

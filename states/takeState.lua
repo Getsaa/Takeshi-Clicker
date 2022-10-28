@@ -137,6 +137,15 @@ return {
                 end
             end
         end
+        if love.joystick.getJoystickCount() > 1 then
+            local j = love.joystick.getJoysticks()[1]
+            if j:isGamepad() then
+                if j:isDown(2) then
+                    tweenHold()
+                    Timer.tween(0.2, angy, {orientation = 0.02}, "out-quad", function() end)
+                end
+            end
+        end
 
             if speed < 1 then
                 speed = 1
